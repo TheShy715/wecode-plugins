@@ -1,4 +1,27 @@
 {
   "schema_version": 1,
-  "plugins": []
+  "plugins": [
+    {
+      "id": "community.json-audit",
+      "version": "0.1.0",
+      "path": "plugins/community.json-audit",
+      "manifest_sha256": "e9b6a6d0905acbe62c6cd6453ff1dfb9e0a8aad8644c804cd85e8ce8313f0321",
+      "validation": "host-verified",
+      "verification": {
+        "path": "validation/community.json-audit-0.1.0.json",
+        "sha256": "05caff14b54cefce9cae47e11f7369e74f585df2b91a7e4baa76c6a0c46e6edf"
+      }
+    },
+    {
+      "id": "community.markdown-links",
+      "version": "0.1.0",
+      "path": "plugins/community.markdown-links",
+      "manifest_sha256": "09a2edeb86eb099658d1d2a703c2e19192b9e58af8164f4d7238ab5a502fe798",
+      "validation": "host-verified",
+      "verification": {
+        "path": "validation/community.markdown-links-0.1.0.json",
+        "sha256": "4261ef8152633ed6cc353157121d8bd5be21b1294a3139f0f576e9c74a41f116"
+      }
+    }
+  ]
 }

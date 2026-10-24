@@ -1,0 +1,6 @@
+{"id": 1, "name": "alpha", "tags": ["a", "b"]}
+{"id": 2, "name": "beta"}
+
+{"id": 3, "name": "gamma", "id": 3.5}
+{broken line
+{"id": 4, "name": "delta", "meta": {"nested": {"deep": [1, 2, {"k": "v", "k": "w"}]}}}
