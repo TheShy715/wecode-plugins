@@ -4,15 +4,15 @@
   "host_revision": "sha256:d4f04fd859604dd6d624ee54953130e6c490a42e3634ce2fcf433ad87337f8ba",
   "platform": "linux-x86_64",
   "package_digest": "a0bae1156fb50de36a6ce48135fb4f859756651206c76feac651d2a7a55f3085",
-  "installed_revision": 1,
+  "installed_revision": 5,
   "manifest_sha256": "e9b6a6d0905acbe62c6cd6453ff1dfb9e0a8aad8644c804cd85e8ce8313f0321",
   "checks": {
     "install": "passed",
     "describe": "passed",
     "invoke": "passed",
     "process_completion": "passed",
-    "upgrade": "not_run",
-    "disable": "not_run",
-    "cold_start": "not_run"
+    "upgrade": "passed",
+    "disable": "passed",
+    "cold_start": "passed"
   }
 }
