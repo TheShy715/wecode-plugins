@@ -9,7 +9,7 @@
       "validation": "host-verified",
       "verification": {
         "path": "validation/community.json-audit-0.1.0.json",
-        "sha256": "05caff14b54cefce9cae47e11f7369e74f585df2b91a7e4baa76c6a0c46e6edf"
+        "sha256": "c1cb7bc1fbbc728562b9a71f6b8658222a2b546bf7700fe6cfa982495155f524"
       }
     },
     {
@@ -20,7 +20,7 @@
       "validation": "host-verified",
       "verification": {
         "path": "validation/community.markdown-links-0.1.0.json",
-        "sha256": "4261ef8152633ed6cc353157121d8bd5be21b1294a3139f0f576e9c74a41f116"
+        "sha256": "40e1e082d127d5629151c4c5ae1d7d45564c240149e717094f044411b6e98e14"
       }
     }
   ]
