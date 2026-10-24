@@ -102,7 +102,7 @@ def verify(root):
             require(isinstance(receipt, dict) and set(receipt) == {"plugin", "version", "host_revision", "platform", "package_digest", "installed_revision", "manifest_sha256", "checks"}, "Unexpected evidence receipt fields")
             require(receipt["manifest_sha256"] == record["manifest_sha256"], "Evidence is not bound to this manifest")
             require(receipt["plugin"] == ident and receipt["version"] == version, "Evidence identity mismatch")
-            require(isinstance(receipt["host_revision"], str) and re.fullmatch(r"[0-9a-f]{40}", receipt["host_revision"]), "Expected exact host revision")
+            require(isinstance(receipt["host_revision"], str) and re.fullmatch(r"(?:[0-9a-f]{40}|sha256:[0-9a-f]{64})", receipt["host_revision"]), "Expected captured host commit or binary SHA-256 identity")
             require(isinstance(receipt["platform"], str) and 0 < len(receipt["platform"]) <= 100, "Missing observed platform")
             require(isinstance(receipt["package_digest"], str) and DIGEST.fullmatch(receipt["package_digest"]), "Missing observed Core digest")
             require(type(receipt["installed_revision"]) is int and receipt["installed_revision"] > 0, "Missing installed revision")
@@ -201,7 +201,7 @@ def main():
         else:
             require(args.output is None, "--output is only valid for build")
             count = len(verify(args.root))
-        print(json.dumps({"operation": args.command, "packages": count, "host_installation_verified": False}))
+        print(json.dumps({"operation": args.command, "packages": count, "scope": "source-and-receipt-consistency", "native_execution_performed": False}))
     except (ValueError, OSError, KeyError, TypeError) as error:
         parser.exit(1, f"marketplace: {error}\n")
 

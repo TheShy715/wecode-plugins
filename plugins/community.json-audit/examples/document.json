@@ -1,0 +1,10 @@
+{
+  "title": "示例",
+  "count": 42,
+  "price": 19.99,
+  "ok": true,
+  "items": [
+    {"sku": "A-1", "qty": 3},
+    {"sku": "A-2", "qty": 0}
+  ]
+}

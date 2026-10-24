@@ -1,0 +1,137 @@
+{
+  "format": 1,
+  "identity": {
+    "id": "community.markdown-links",
+    "version": "0.1.0"
+  },
+  "protocol": {
+    "major": 1,
+    "min_minor": 113,
+    "max_minor": 113
+  },
+  "targets": [
+    {
+      "os": "linux",
+      "architecture": "x86_64"
+    }
+  ],
+  "entry": {
+    "type": "declarative",
+    "handlers": {
+      "docs.usage": {
+        "type": "resource_read",
+        "paths": [
+          "USAGE.md"
+        ]
+      },
+      "audit.run": {
+        "type": "managed_script_start",
+        "path": "markdown_links.py",
+        "runtime": {
+          "id": "python3",
+          "version_requirement": ">=3.9.0"
+        }
+      }
+    }
+  },
+  "capabilities": [
+    {
+      "name": "docs.usage",
+      "kind": "tool",
+      "effect": "read_only",
+      "description": "Read the packaged usage guide for the Markdown local-link audit",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 16384
+          }
+        },
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "audit.run",
+      "kind": "tool",
+      "effect": "workspace_write",
+      "description": "Run the Markdown local-link audit script; writes a new report file in the workspace",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "cwd": {
+            "type": "string",
+            "default": "."
+          },
+          "max_output_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 1048576
+          },
+          "timeout_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "default": null
+          },
+          "wait_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 1000
+          }
+        },
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object"
+      }
+    }
+  ],
+  "max_concurrency": 4,
+  "files": [
+    {
+      "path": "USAGE.md",
+      "sha256": "7966ccc68204b8ee6d694883f26025a1833239cbe4089404089d1d50f79728dd"
+    },
+    {
+      "path": "examples/docs/logo.png",
+      "sha256": "0459e915a3c16642a654be26d4a5b996114031ad2c1c3cd93192f18526aaed4f"
+    },
+    {
+      "path": "examples/docs/sub page.md",
+      "sha256": "0512a1cf98e5d8d2ce78a4b632267e4516afae13bae2988b8deb7b06517f94e0"
+    },
+    {
+      "path": "examples/index.md",
+      "sha256": "81580b2136b748b6705415e7a7547a2f73a31f4bac5f5a488d9bb48f51eecba8"
+    },
+    {
+      "path": "markdown_links.py",
+      "sha256": "d8d728ac0a5f65d7001a28e8617c1378f7afe309d3122cd09b24d544562ba51e"
+    }
+  ]
+}

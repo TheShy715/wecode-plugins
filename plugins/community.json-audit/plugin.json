@@ -1,0 +1,133 @@
+{
+  "format": 1,
+  "identity": {
+    "id": "community.json-audit",
+    "version": "0.1.0"
+  },
+  "protocol": {
+    "major": 1,
+    "min_minor": 113,
+    "max_minor": 113
+  },
+  "targets": [
+    {
+      "os": "linux",
+      "architecture": "x86_64"
+    }
+  ],
+  "entry": {
+    "type": "declarative",
+    "handlers": {
+      "docs.usage": {
+        "type": "resource_read",
+        "paths": [
+          "USAGE.md"
+        ]
+      },
+      "audit.run": {
+        "type": "managed_script_start",
+        "path": "json_audit.py",
+        "runtime": {
+          "id": "python3",
+          "version_requirement": ">=3.9.0"
+        }
+      }
+    }
+  },
+  "capabilities": [
+    {
+      "name": "docs.usage",
+      "kind": "tool",
+      "effect": "read_only",
+      "description": "Read the packaged usage guide for the JSON/JSONL audit tool",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 16384
+          }
+        },
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "audit.run",
+      "kind": "tool",
+      "effect": "workspace_write",
+      "description": "Run the JSON/JSONL audit script; writes a new report file in the workspace",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "cwd": {
+            "type": "string",
+            "default": "."
+          },
+          "max_output_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 1048576
+          },
+          "timeout_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "default": null
+          },
+          "wait_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 1000
+          }
+        },
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object"
+      }
+    }
+  ],
+  "max_concurrency": 4,
+  "files": [
+    {
+      "path": "USAGE.md",
+      "sha256": "c8d7c507b02e00d2167606e5b331f7f233931438f97ce7a2e2427239a3f36852"
+    },
+    {
+      "path": "examples/document.json",
+      "sha256": "acd40fbdd423798a52f2aa388ea55b5a6c934c260d7576f6984a0aff02a35d93"
+    },
+    {
+      "path": "examples/records.jsonl",
+      "sha256": "3b8256aee4d8a903e982ffb4748e38636775fcffe533dbe1d910ba078c6d2aeb"
+    },
+    {
+      "path": "json_audit.py",
+      "sha256": "f162f4b094ccc4617cc0508ee21927d4bf8b1d7f438369f4d350292104891fd4"
+    }
+  ]
+}

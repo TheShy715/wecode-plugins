@@ -156,6 +156,45 @@ class MarketplaceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "observed install"):
             m.verify(self.root)
 
+    def test_host_identity_accepts_captured_binary_hash(self):
+        receipt = {"plugin": "example.test", "version": "1.0.0",
+                   "host_revision": "sha256:" + "c" * 64,
+                   "platform": "linux-x86_64", "package_digest": "b" * 64,
+                   "installed_revision": 1,
+                   "manifest_sha256": self.catalog["plugins"][0]["manifest_sha256"],
+                   "checks": {"install": "passed", "describe": "passed", "invoke": "passed",
+                              "process_completion": "not_applicable", "upgrade": "not_run",
+                              "disable": "not_run", "cold_start": "not_run"}}
+        directory = self.root / "validation"
+        directory.mkdir()
+        target = directory / "example.test-1.0.0.json"
+        for identity, valid in [("sha256:" + "c" * 64, True),
+                                ("sha256:" + "c" * 63, False),
+                                ("md5:" + "c" * 32, False), ("latest", False)]:
+            with self.subTest(identity=identity):
+                receipt["host_revision"] = identity
+                body = json.dumps(receipt).encode()
+                target.write_bytes(body)
+                self.catalog["plugins"][0].update(validation="host-verified",
+                    verification={"path": "validation/example.test-1.0.0.json", "sha256": m.sha(body)})
+                (self.root / "catalog.json").write_text(json.dumps(self.catalog))
+                if valid:
+                    self.assertEqual(len(m.verify(self.root)), 1)
+                else:
+                    with self.assertRaisesRegex(ValueError, "captured host"):
+                        m.verify(self.root)
+
+    def test_cli_reports_check_scope_not_host_failure(self):
+        import subprocess
+        import sys
+        result = subprocess.run([sys.executable, "-B", str(Path(m.__file__)),
+                                 "check", "--root", str(self.root)],
+                                capture_output=True, text=True, check=True)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["scope"], "source-and-receipt-consistency")
+        self.assertFalse(report["native_execution_performed"])
+        self.assertNotIn("host_installation_verified", report)
+
     def test_false_host_verification_rejected(self):
         self.catalog["plugins"][0]["validation"] = "host-verified"
         (self.root / "catalog.json").write_text(json.dumps(self.catalog))
