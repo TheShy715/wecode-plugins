@@ -11,6 +11,13 @@
 
 当前安装包目标为 Linux x86_64、Python 3.9+；macOS 和 Windows 的原生安装尚未验证。
 
+## 新 Service 示例
+
+[文本统计](plugins/community.text-profile/USAGE.md)提供一个无第三方依赖的 Node 24
+Service 示例，统计明确传入的文本，不读取工作区、不写状态、不发网络请求。
+它仍标为 source-only，不借用上面两个插件的完整生命周期验收，也不声称所有
+wecode 发行版已经支持新入口。具体版本和平台要求见包内说明。
+
 ## 怎么安装
 
 把插件页面地址发给 wecode，并告诉它：
@@ -23,11 +30,12 @@
 
 [贡献指南](CONTRIBUTING.md) · [安装与生命周期合同](docs/installation.md)
 
-本地检查需要 Python 3.11+，无需额外依赖：
+本地检查需要 Python 3.11+ 和 Node 24，无需安装第三方依赖：
 
 ```sh
 python3 -m unittest discover -s tests -v
 python3 scripts/marketplace.py check
+node --test tests/test_text_profile.mjs
 ```
 
 可用 `python3 scripts/marketplace.py build --output dist` 生成可复现的 ZIP 和校验和；输出目录必须尚不存在。源码检查与实际宿主验证分别记录，不以单元测试替代真实安装。

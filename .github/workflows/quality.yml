@@ -16,3 +16,7 @@ jobs:
           python-version: '3.11'
       - run: python -m unittest discover -s tests -v
       - run: python scripts/marketplace.py check
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - run: node --test tests/test_text_profile.mjs

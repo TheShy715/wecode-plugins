@@ -1,0 +1,166 @@
+{
+  "format": 1,
+  "identity": {
+    "id": "community.text-profile",
+    "version": "0.1.0"
+  },
+  "protocol": {
+    "major": 1,
+    "min_minor": 113,
+    "max_minor": 113
+  },
+  "targets": [
+    {
+      "os": "linux",
+      "architecture": "x86_64"
+    }
+  ],
+  "entry": {
+    "type": "process",
+    "path": "service.mjs",
+    "runtime": {
+      "id": "node",
+      "version_requirement": ">=24.0.0, <25.0.0"
+    }
+  },
+  "capabilities": [],
+  "services": [
+    {
+      "service": "text",
+      "method": "profile",
+      "input_schema": {
+        "namespace": "community.text-profile.input",
+        "major": "1",
+        "schema_digest": "35b1eb64d8babfbd9c1e7de61d3c854e5d1afc3d66944816a37bfd306ee583ad"
+      },
+      "output_schema": {
+        "namespace": "community.text-profile.output",
+        "major": "1",
+        "schema_digest": "ff51f312cb11270e98bb5da32f1ec60222f34270a9bfa2642b9783049ffcf683"
+      },
+      "event_schema": null,
+      "effect": {
+        "kind": "ReadOnly"
+      },
+      "cancellation": "Cooperative",
+      "stream": false
+    }
+  ],
+  "service_dependencies": [],
+  "service_contracts": [
+    {
+      "identity": {
+        "namespace": "community.text-profile.input",
+        "major": "1",
+        "schema_digest": "35b1eb64d8babfbd9c1e7de61d3c854e5d1afc3d66944816a37bfd306ee583ad"
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 65536
+          }
+        },
+        "additionalProperties": false
+      },
+      "semantics": {
+        "semantic_id": "community.text-profile.input",
+        "role": "Input",
+        "effect": {
+          "kind": "ReadOnly"
+        },
+        "cancellation": "Cooperative",
+        "stream": false
+      }
+    },
+    {
+      "identity": {
+        "namespace": "community.text-profile.output",
+        "major": "1",
+        "schema_digest": "ff51f312cb11270e98bb5da32f1ec60222f34270a9bfa2642b9783049ffcf683"
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "utf8_bytes",
+          "code_points",
+          "lines",
+          "blank_lines",
+          "longest_line_code_points",
+          "lf_count",
+          "crlf_count"
+        ],
+        "properties": {
+          "utf8_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 262144
+          },
+          "code_points": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65536
+          },
+          "lines": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65536
+          },
+          "blank_lines": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65536
+          },
+          "longest_line_code_points": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65536
+          },
+          "lf_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65536
+          },
+          "crlf_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65536
+          }
+        },
+        "additionalProperties": false
+      },
+      "semantics": {
+        "semantic_id": "community.text-profile.output",
+        "role": "Output",
+        "effect": {
+          "kind": "ReadOnly"
+        },
+        "cancellation": "Cooperative",
+        "stream": false
+      }
+    }
+  ],
+  "max_concurrency": 1,
+  "dependencies": [],
+  "state": null,
+  "configuration": null,
+  "ui": [],
+  "files": [
+    {
+      "path": "service.mjs",
+      "sha256": "2e32e97de0fd73bc170164c908cf613b83cc55b7b8bf7d82fb8574d04db319ce"
+    },
+    {
+      "path": "USAGE.md",
+      "sha256": "4cc6a0b546b735af8a7663a0bc966d686bc3050ab21819526f5d2cfc3f5aa4df"
+    },
+    {
+      "path": "examples/input.json",
+      "sha256": "0dab3ade3cfe3f77b8be5a15a49ed197cd1eac4db00d8fca64fc98b3f73e362c"
+    }
+  ]
+}

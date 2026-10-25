@@ -22,6 +22,13 @@
         "path": "validation/community.markdown-links-0.1.0.json",
         "sha256": "40e1e082d127d5629151c4c5ae1d7d45564c240149e717094f044411b6e98e14"
       }
+    },
+    {
+      "id": "community.text-profile",
+      "version": "0.1.0",
+      "path": "plugins/community.text-profile",
+      "manifest_sha256": "49e90f82f7f0fe971a617e913b96404fe94d90dd015a606a2e658507ae8ff564",
+      "validation": "source-only"
     }
   ]
 }
