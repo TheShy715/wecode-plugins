@@ -27,7 +27,7 @@
       "id": "community.text-profile",
       "version": "0.1.0",
       "path": "plugins/community.text-profile",
-      "manifest_sha256": "66b5c74d6861c8215dd0bdca052c3a2511660904e437b08a4f62dd72978d2ff0",
+      "manifest_sha256": "dc0babc11cced87358d9493bd07453d198e369c153784218e5aaee81b5fab038",
       "validation": "source-only"
     }
   ]
