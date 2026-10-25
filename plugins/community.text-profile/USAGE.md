@@ -10,7 +10,7 @@ community.text-profile 0.1.0 是原创、无第三方依赖的 Node 标准库示
 
     wecode plugin call --source ./community.text-profile --service text --method profile --input ./community.text-profile/examples/input.json
 
-新 Service 入口的仓库源选项可用 --id community.text-profile 选择本包；本例尚未完成固定公开提交的下载调用验证。仓库地址不是已经安装或运行的证明；只有实际准备、启用和业务结果均确认后，才能报告本次调用成功。进程随后停止，保留的选择不是后台常驻服务。该包目录在 catalog 中保持 source-only，不借用两个历史 declarative 包的 host-verified 记录。
+新 Service 入口的仓库源选项可用 --id community.text-profile 选择本包；本例尚未完成仓库 URL 到宿主调用的端到端验证；下载原件后使用本地目录调用，与 URL 直连获取分别验收。仓库地址不是已经安装或运行的证明；只有实际准备、启用和业务结果均确认后，才能报告本次调用成功。进程随后停止，保留的选择不是后台常驻服务。该包目录在 catalog 中保持 source-only，不借用两个历史 declarative 包的 host-verified 记录。
 
 输入仅允许一个 text 字段，最多 65536 个 Unicode 码点，拒绝不完整的 Unicode 代理项。空字符串为零行；LF 分隔行，末尾 LF 不额外产生一行，行末 CRLF 按一个行结束处理，未紧邻 LF 的 CR 是普通字符，不被删除。空行指没有字符的行，空格行不算空行。码点数包括原文行结束字符；不是字形簇数，也不是终端显示宽度。原文不改变。
 
